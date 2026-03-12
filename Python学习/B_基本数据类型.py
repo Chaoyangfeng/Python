@@ -178,5 +178,171 @@ print (list[2:])        # 打印列表从第三个元素开始到末尾
 print (tinylist * 2)    # 打印tinylist列表两次
 print (list + tinylist)  # 打印两个列表拼接在一起的结果
 
+List 内置了有很多方法，例如 append()、pop() 等等，这在后面会讲到。
+注意：
+1、列表写在方括号 [] 之间、用逗号分隔开的元素列表。
+2、和字符串一样，列表同样可以被索引和截取。
+3、列表可以使用+运算符进行拼接，也可以使用*运算符进行复制。
+4、列表中的元素类型可以不同，列表中的元素也可以是另一个列表。可以进行变更
+
+如果第三个参数为负数表示逆向读取，以下实例用于翻转字符串：
+def reverseWords(input): 
+      
+    # 通过空格将字符串分隔符，把各个单词分隔为列表
+    inputWords = input.split(" ") 
+  
+    # 翻转字符串
+    # 假设列表 list = [1,2,3,4],  
+    # list[0]=1, list[1]=2 ，而 -1 表示最后一个元素 list[-1]=4 ( 与 list[3]=4 一样) 
+    # inputWords[-1::-1] 有三个参数
+    # 第一个参数 -1 表示最后一个元素
+    # 第二个参数为空，表示移动到列表末尾
+    # 第三个参数为步长，-1 表示逆向
+    inputWords=inputWords[-1::-1] 
+  
+    # 重新组合字符串
+    output = ' '.join(inputWords) 
+      
+    return output 
+  
+if __name__ == "__main__": 
+    input = 'I like runoob'
+    rw = reverseWords(input) 
+    print(rw)
+    
+===================Tuple类型=====================
+Tuple类型：
+Tuple 和 List 类似，不同之处在于 Tuple 一旦初始化就不能修改。
+Tuple 写在小括号 () 里、元素之间用逗号隔开。
+元组中的元素类型也可以不相同。例如：
+
+tuple = ( 'abcd', 786 , 2.23, 'runoob', 70.2  )
+tinytuple = (123, 'runoob')
+
+print (tuple)             # 输出完整元组
+print (tuple[0])          # 输出元组的第一个元素
+print (tuple[1:3])        # 输出从第二个元素开始到第三个元素
+print (tuple[2:])         # 输出从第三个元素开始的所有元素
+print (tinytuple * 2)     # 输出两次元组
+print (tuple + tinytuple) # 连接元组
+
+以上实例输出结果如下：
+('abcd', 786, 2.23, 'runoob', 70.2)
+abcd
+(786, 2.23)
+(2.23, 'runoob', 70.2)
+(123, 'runoob', 123, 'runoob')
+('abcd', 786, 2.23, 'runoob', 70.2, 123, 'runoob')
+元组与字符串类似，可以被索引且下标索引从0开始，-1 为从末尾开始的位置。也可以进行截取（看上面，这里不再赘述）。
+其实，可以把字符串看作一种特殊的元组。
+>>> tup = (1, 2, 3, 4, 5, 6)
+>>> print(tup[0])
+1
+>>> print(tup[1:5])
+(2, 3, 4, 5)
+>>> tup[0] = 11  # 修改元组元素的操作是非法的
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: 'tuple' object does not support item assignment
+>>>
+
+虽然tuple的元素不可改变，但它可以包含可变的对象，比如list列表。
+构造包含 0 个或 1 个元素的元组比较特殊，所以有一些额外的语法规则：
+tup1 = ()    # 空元组
+tup2 = (20,) # 一个元素，需要在元素后添加逗号
+如果你想创建只有一个元素的元组，需要注意在元素后面添加一个逗号，以区分它是一个元组而不是一个普通的值，这是因为在没有逗号的情况下，
+Python会将括号解释为数学运算中的括号，而不是元组的表示。
+如果不添加逗号，如下所示，它将被解释为一个普通的值而不是元组：
+not_a_tuple = (42)
+这样的话，not_a_tuple 将是整数类型而不是元组类型。
+string、list 和 tuple 都属于 sequence（序列）
+
+注意：
+1、与字符串一样，元组的元素不能修改。
+2、元组也可以被索引和切片，方法一样。
+3、注意构造包含 0 或 1 个元素的元组的特殊语法规则。
+4、元组也可以使用 + 操作符进行拼接。
+
+
+===================Set类型=====================
+Python 中的集合（Set）是一种无序、可变的数据类型，用于存储唯一的元素。
+集合中的元素不会重复，并且可以进行交集、并集、差集等常见的集合操作。
+在 Python 中，集合使用大括号 {} 表示，元素之间用逗号 , 分隔。
+另外，也可以使用 set() 函数创建集合。
+注意：创建一个空集合必须用 set() 而不是 { }，因为 { } 是用来创建一个空字典。
+创建格式：
+parame = {value01,value02,...}
+或者
+set(value)
+
+例如：
+sites = {'Google', 'Taobao', 'Runoob', 'Facebook', 'Zhihu', 'Baidu'}
+print(sites)   # 输出集合，重复的元素被自动去掉
+# 成员测试
+if 'Runoob' in sites :
+    print('Runoob 在集合中')
+else :
+    print('Runoob 不在集合中')
+# set可以进行集合运算
+a = set('abracadabra')
+b = set('alacazam')
+print(a)
+print(a - b)     # a 和 b 的差集
+print(a | b)     # a 和 b 的并集
+print(a & b)     # a 和 b 的交集
+print(a ^ b)     # a 和 b 中不同时存在的元素
+
+以上实例输出结果：
+{'Zhihu', 'Baidu', 'Taobao', 'Runoob', 'Google', 'Facebook'}
+Runoob 在集合中
+{'b', 'c', 'a', 'r', 'd'}
+{'r', 'b', 'd'}
+{'b', 'c', 'a', 'z', 'm', 'r', 'l', 'd'}
+{'c', 'a'}
+{'z', 'b', 'm', 'r', 'l', 'd'}
+
+===================Dictionary类型=====================
+Dictionary（字典）类型：
+字典（dictionary）是Python中另一个非常有用的内置数据类型。
+列表是有序的对象集合，字典是无序的对象集合。两者之间的区别在于：字典当中的元素是通过键来存取的，而不是通过偏移存取。
+字典是一种映射类型，字典用 { } 标识，它是一个无序的 键(key) : 值(value) 的集合。
+键(key)必须使用不可变类型。
+在同一个字典中，键(key)必须是唯一的
+例如：
+dict = {}
+dict['one'] = "1 - 菜鸟教程"
+dict[2]     = "2 - 菜鸟工具"
+tinydict = {'name': 'runoob','code':1, 'site': 'www.runoob.com'}
+print (dict['one'])       # 输出键为 'one' 的值
+print (dict[2])           # 输出键为 2 的值
+print (tinydict)          # 输出完整的字典
+print (tinydict.keys())   # 输出所有键
+print (tinydict.values()) # 输出所有值
+
+以上实例输出结果：
+1 - 菜鸟教程
+2 - 菜鸟工具
+{'name': 'runoob', 'code': 1,'site': 'www.runoob.com'}
+dict_keys(['name', 'code','site'])
+dict_values(['runoob', 1, 'www.runoob.com'])
+
+构造函数dic（）可以直接从键值对序列中构建字典。
+例如：
+>>> dict([('Runoob', 1), ('Google', 2), ('Taobao', 3)])
+{'Runoob': 1, 'Google': 2, 'Taobao': 3}
+>>> {x: x**2 for x in (2, 4, 6)}
+{2: 4, 4: 16, 6: 36}
+>>> dict(Runoob=1, Google=2, Taobao=3)
+{'Runoob': 1, 'Google': 2, 'Taobao': 3}
+
+{x: x**2 for x in (2, 4, 6)} 该代码使用的是字典推导式，更多推导式内容可以参考：Python 推导式。
+另外，字典类型也有一些内置的函数，例如 clear()、keys()、values() 等。
+注意：
+1、字典是一种映射类型，它的元素是键值对。
+2、字典的关键字必须为不可变类型，且不能重复。
+3、创建空字典使用 { }。
+
+
+
 
 '''
